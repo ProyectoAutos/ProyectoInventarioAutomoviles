@@ -1,0 +1,20 @@
+create database ProyectoLab;
+use ProyectoLab;
+
+SET FOREIGN_KEY_CHECKS=0;
+
+create table gerencia(NombresEmpresa varchar(50) not null,Direccion varchar(100) not null,Email varchar(50) not null,Registro int(10) not null,NIT_G varchar(15) not null,Telefono int(8) not null,Fax int(8) not null,primary key(NIT_G))engine=innodb;
+
+create table clientes(id_cliente int(4) zerofill not null auto_increment,Nombres varchar(50) not null,Apellidos varchar(50) not null,Direccion varchar(100) not null,DUI varchar(10) not null,NIT varchar(15) not null,NPasaporte varchar(9) not null,Telefono1 int(8) not null,Telefono2 int(8) not null,Telefono3 int(8) not null,HistorialCrediticio varchar(2) not null,primary key(id_cliente))engine=innodb;
+
+create table vendedores(id_vendedor int(4) zerofill not null auto_increment,Nombres varchar(50) not null,Apellidos varchar(50) not null,Direccion varchar(100) not null,DUI varchar(10) not null,NIT varchar(15) not null,AFP varchar(12) not null,NSS int(9),Telefono1 int(8) not null,Telefono2 int(8) not null,Telefono3 int(8) not null,primary key(id_vendedor))engine=innodb;
+
+create table Vehi_Marcas(id_marca int(3) zerofill not null auto_increment,marca varchar(50) not null,primary key(id_marca))engine=innodb;
+
+create table Vehi_Modelos(id_marca int(3) zerofill not null,id_modelo int(3) zerofill not null auto_increment,modelo varchar(100) not null,primary key(id_modelo), index(id_marca),foreign key(id_marca) references Vehi_Marcas(id_marca))engine=innodb;
+
+create table Vehi_Versiones(id_marca int(2) zerofill not null,id_modelo int(3) zerofill not null,id_version int(3) zerofill not null auto_increment,version varchar(100) not null,primary key(id_version), index(id_modelo),foreign key(id_modelo) references Vehi_Modelos(id_modelo),foreign key(id_marca) references Vehi_Marcas(id_marca))engine=innodb;
+
+create table Vehi_Detalles(id_marca int(2) zerofill not null,id_modelo int(3) zerofill not null,id_version int(3) zerofill not null,id_interno int(3) zerofill not null auto_increment,Descripcion varchar(500) not null,Disponibilidad int(2) zerofill not null,costo decimal(9,2) zerofill not null,FechaDEntrada date not null,primary key(id_interno), index(id_version),foreign key(id_modelo) references Vehi_Modelos(id_modelo),foreign key(id_marca) references Vehi_Marcas(id_marca),foreign key(id_version) references Vehi_Versiones(id_version))engine=innodb;
+
+create table comprobantefiscal(id_fiscal int(4) zerofill not null auto_increment,NIT_G varchar(15) not null,id_interno int(3) zerofill,id_cliente int(4) zerofill not null,id_vendedor int(4) zerofill not null,fecha date not null,giro varchar(25) not null,Cond_Pago varchar(25) not null,Observaciones varchar(200) not null,primary key(id_fiscal),index(id_vendedor),foreign key(NIT_G) references gerencia(NIT_G),foreign key(id_cliente) references clientes(id_cliente),foreign key(id_interno) references Vehi_Detalles(id_interno),foreign key(id_vendedor) references vendedores(id_vendedor))engine=innodb;
