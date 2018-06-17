@@ -197,8 +197,6 @@ C_Vendedores vendors= new C_Vendedores();
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
