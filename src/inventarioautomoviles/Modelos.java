@@ -24,6 +24,14 @@ public class Modelos {
     public ResultSet mayorRegistroDondeMarcaEs(int id_marca) {
         return (cn.getVal("SELECT MAX(id_modelo) FROM vehi_modelos where id_marca='"+id_marca+"'"));
     }
+    
+    public ResultSet mayorRegistro() {
+        return (cn.getVal("SELECT MAX(id_modelo) FROM vehi_modelos"));
+    }
+    
+    public ResultSet llenarTabla(int id_marca) {
+        return (cn.getVal("SELECT id_modelo,modelo FROM vehi_modelos where id_marca='"+id_marca+"'"));
+    }
 
     
 }
