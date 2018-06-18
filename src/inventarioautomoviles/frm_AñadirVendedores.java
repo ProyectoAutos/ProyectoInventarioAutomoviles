@@ -6,6 +6,11 @@
 
 package inventarioautomoviles;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Javier
@@ -16,6 +21,7 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
     C_Vendedores objVend=new C_Vendedores();
     public frm_AñadirVendedores() {
         initComponents();
+        id();
     }
 
     /** This method is called from within the constructor to
@@ -84,6 +90,62 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
+
+        jTextField1.setEditable(false);
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
+
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
+
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField4KeyTyped(evt);
+            }
+        });
+
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
+            }
+        });
+
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField6KeyTyped(evt);
+            }
+        });
+
+        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField7KeyTyped(evt);
+            }
+        });
+
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField8KeyTyped(evt);
+            }
+        });
+
+        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField9KeyTyped(evt);
+            }
+        });
+
+        jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField10KeyTyped(evt);
+            }
+        });
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -223,9 +285,64 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
         Guardar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void Guardar(){      
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        if(jTextField2.getText().length()==50)
+            evt.consume();
+    }//GEN-LAST:event_jTextField2KeyTyped
 
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        if(jTextField3.getText().length()==50)
+            evt.consume();
+    }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+        if(jTextField4.getText().length()==10)
+            evt.consume();
+    }//GEN-LAST:event_jTextField4KeyTyped
+
+    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+        if(jTextField5.getText().length()==15)
+            evt.consume();
+    }//GEN-LAST:event_jTextField5KeyTyped
+
+    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
+        if(jTextField6.getText().length()==12)
+            evt.consume();
+    }//GEN-LAST:event_jTextField6KeyTyped
+
+    private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
+        if((jTextField7.getText().length()==9)||!Character.isDigit(evt.getKeyChar()))
+            evt.consume();
+    }//GEN-LAST:event_jTextField7KeyTyped
+
+    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+        if((jTextField8.getText().length()==8)||!Character.isDigit(evt.getKeyChar()))
+            evt.consume();
+    }//GEN-LAST:event_jTextField8KeyTyped
+
+    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
+        if((jTextField9.getText().length()==8)||!Character.isDigit(evt.getKeyChar()))
+            evt.consume();
+    }//GEN-LAST:event_jTextField9KeyTyped
+
+    private void jTextField10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyTyped
+        if((jTextField10.getText().length()==8)||!Character.isDigit(evt.getKeyChar()))
+            evt.consume();
+    }//GEN-LAST:event_jTextField10KeyTyped
+
+    public void id(){
+        ResultSet id= objVend.contarRegistros();        
+                    
+        try {
+            if(id.next())
+            jTextField1.setText(""+(id.getInt(1)+1));
+        } catch (SQLException ex) {
+            
+        }
+    }
+    public void Guardar(){
         objVend.nuevoVendedor(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextArea1.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), Integer.parseInt(jTextField7.getText()), Integer.parseInt(jTextField8.getText()),Integer.parseInt(jTextField9.getText()),Integer.parseInt(jTextField10.getText()));
+        id();
     }
     /**
      * @param args the command line arguments
