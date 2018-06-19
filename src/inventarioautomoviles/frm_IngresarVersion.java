@@ -20,8 +20,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frm_IngresarVersion extends javax.swing.JFrame {
 
-    Marcas ObjMarca=new Marcas();
-    Modelos ObjModelo=new Modelos();
+    C_Marcas ObjMarca=new C_Marcas();
+    C_Modelos ObjModelo=new C_Modelos();
     C_Versiones ObjVersiones=new C_Versiones();
     DefaultComboBoxModel ListaMarcas=new DefaultComboBoxModel();
     DefaultComboBoxModel ListaId_Marcas=new DefaultComboBoxModel();

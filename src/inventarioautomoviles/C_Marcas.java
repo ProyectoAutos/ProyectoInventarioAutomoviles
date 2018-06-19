@@ -6,8 +6,8 @@ import java.sql.ResultSet;
  *
  * @author Javier
  */
-public class Marcas {
-    Conexion cn = new Conexion();   
+public class C_Marcas {
+    C_Conexion cn = new C_Conexion();   
     
     public void insertar(String Marca) {
         cn.UID("INSERT INTO vehi_marcas(Marca)value ('" + Marca + "')");

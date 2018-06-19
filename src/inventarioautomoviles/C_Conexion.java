@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  *
  * @author Javier
  */
-public class Conexion {
+public class C_Conexion {
     private String url = "jdbc:mysql://localhost:3306/proyectolab";
     private String login = "root"; 
     private String password = "12345678";

@@ -7,7 +7,7 @@ import java.sql.ResultSet;
  * @author Javier
  */
 public class C_Gerencia {
-    Conexion cn = new Conexion();
+    C_Conexion cn = new C_Conexion();
     
     public void insertar(String Nombre,String Direccion,String Email,int Registro,String Nit,int tel, int fax){        
         cn.UID("insert into gerencia values('"+Nombre+"','"+Direccion+"','"+Email+"','"+Registro+"','"+Nit+"','"+tel+"','"+fax+"')");

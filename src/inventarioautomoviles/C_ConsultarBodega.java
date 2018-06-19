@@ -7,7 +7,7 @@ import java.sql.ResultSet;
  * @author Javier
  */
 public class C_ConsultarBodega {    
-    Conexion cn = new Conexion();
+    C_Conexion cn = new C_Conexion();
     public ResultSet llenarTablaMarcaModelo() {
         return (cn.getVal("SELECT vehi_marcas.id_marca, vehi_marcas.Marca, vehi_modelos.id_modelo, vehi_modelos.Modelo FROM (vehi_marcas INNER JOIN vehi_modelos ON vehi_marcas.id_marca = vehi_modelos.id_marca) ORDER BY id_marca asc,id_modelo asc"));
     }

@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class frm_IngresarMarca extends javax.swing.JFrame {
 
-    Marcas ObjMarca=new Marcas();
+    C_Marcas ObjMarca=new C_Marcas();
     DefaultListModel<String> ListaMarcas=new DefaultListModel<>();
     public frm_IngresarMarca() {
         initComponents();

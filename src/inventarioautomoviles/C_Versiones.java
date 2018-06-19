@@ -12,7 +12,7 @@ import java.sql.ResultSet;
  * @author Javier
  */
 public class C_Versiones {
-    Conexion cn = new Conexion();   
+    C_Conexion cn = new C_Conexion();   
     
     public void insertarVersionColor(String id_modelo, String id_marca,String version, String Color) {
         cn.UID("INSERT INTO vehi_versiones(id_marca,id_modelo,version,color) value ('"+id_marca+"','"+id_modelo+"','"+version+"','"+Color+"')");

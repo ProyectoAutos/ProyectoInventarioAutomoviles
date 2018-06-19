@@ -11,8 +11,8 @@ import java.sql.ResultSet;
  *
  * @author Javier
  */
-public class Modelos {
-    Conexion cn = new Conexion();   
+public class C_Modelos {
+    C_Conexion cn = new C_Conexion();   
     
     public void insertar(int id_modelo, int id_marca,String modelo) {
         cn.UID("INSERT INTO vehi_modelos(id_modelo,id_marca,modelo) value ('"+id_modelo+"','"+id_marca+"','"+modelo+"')");
