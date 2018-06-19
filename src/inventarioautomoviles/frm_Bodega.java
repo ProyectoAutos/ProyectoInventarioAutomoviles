@@ -5,17 +5,24 @@
  */
 package inventarioautomoviles;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Javier
  */
 public class frm_Bodega extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frm_Bodega
-     */
+    
+    DefaultTableModel modelo=new DefaultTableModel();    
+    ResultSet rstTabla = null;
+    C_ConsultarBodega unidad=new C_ConsultarBodega();
     public frm_Bodega() {
         initComponents();
+        Imprimir();
     }
 
     /**
@@ -139,6 +146,23 @@ public class frm_Bodega extends javax.swing.JFrame {
         vers.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void PrepararModeloUnidad() {
+       while(modelo.getRowCount()>0)modelo.removeRow(0);
+       String TitulosdeColumna[]=new String[]{"Marca","Modelo","Version","Color"};
+       modelo.setColumnIdentifiers(TitulosdeColumna);
+        try{
+            rstTabla = unidad.llenarTablaMarcaModeloVersion();
+            while (rstTabla.next()) 
+                modelo.addRow(new Object[]{rstTabla.getString(2),rstTabla.getString(4),rstTabla.getString(6),rstTabla.getString(7)});
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
+                modelo.addRow(new Object[]{"Error","Error"});
+        } 
+    } 
+    private void Imprimir(){
+        PrepararModeloUnidad();
+        jTable1.setModel(modelo);
+    }
     /**
      * @param args the command line arguments
      */
