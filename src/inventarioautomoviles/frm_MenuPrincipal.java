@@ -67,6 +67,11 @@ public class frm_MenuPrincipal extends javax.swing.JFrame {
         });
 
         jButton5.setText("Venta");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("¿Qué desea gestionar?");
 
@@ -149,6 +154,12 @@ public class frm_MenuPrincipal extends javax.swing.JFrame {
         bode.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        frm_Venta venta=new frm_Venta();
+        venta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
