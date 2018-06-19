@@ -14,10 +14,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Javier
  */
-public class frm_ListaVendedores extends javax.swing.JFrame {
+public class frm_ListaClientes extends javax.swing.JFrame {
 
-    frm_AñadirVendedores Obj_Vendor=new frm_AñadirVendedores();
-    public frm_ListaVendedores() {
+    frm_AñadirClientes Obj_Client=new frm_AñadirClientes();
+    public frm_ListaClientes() {
         initComponents();
         Imprimir();
     }
@@ -119,14 +119,14 @@ public class frm_ListaVendedores extends javax.swing.JFrame {
         verdetalle = verdetalle==false;
         
         if(verdetalle){
-            jButton1.setText("Info de contacto");}
+            jButton1.setText("Info general");}
         else            
             jButton1.setText("Ver detalle");
         Imprimir();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Obj_Vendor.setVisible(true);
+        Obj_Client.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -134,23 +134,23 @@ public class frm_ListaVendedores extends javax.swing.JFrame {
         frm_MenuPrincipal menu=new frm_MenuPrincipal();
         menu.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
-C_Vendedores vendors= new C_Vendedores();
+C_Clientes clients= new C_Clientes();
     DefaultTableModel modelo=new DefaultTableModel();    
     ResultSet rstTabla = null;
     boolean verdetalle=false;
 
     private void PrepararModeloUnidadVGeneral() {
        while(modelo.getRowCount()>0)modelo.removeRow(0);
-       String TitulosdeColumna[]=new String[]{"Nombres","Apellidos","Telefono(s)","Dirección"};
+       String TitulosdeColumna[]=new String[]{"Nombres","Apellidos","Telefono(s)","Dirección","Hist Crediticio"};
        modelo.setColumnIdentifiers(TitulosdeColumna);
         try{
-            rstTabla = vendors.llenarTabla();
+            rstTabla = clients.llenarTabla();
             while (rstTabla.next()) {
-                modelo.addRow(new Object[]{rstTabla.getString(2),rstTabla.getString(3),rstTabla.getString(9),rstTabla.getString(4)});
+                modelo.addRow(new Object[]{rstTabla.getString(2),rstTabla.getString(3),rstTabla.getString(8),rstTabla.getString(4),rstTabla.getString(11)});
+                if(rstTabla.getInt(9)!=0)
+                modelo.addRow(new Object[]{"","",rstTabla.getString(9),""});
                 if(rstTabla.getInt(10)!=0)
-                modelo.addRow(new Object[]{"","",rstTabla.getString(10),""});
-                if(rstTabla.getInt(11)!=0)
-                modelo.addRow(new Object[]{"","",rstTabla.getString(11),""});}
+                modelo.addRow(new Object[]{"","",rstTabla.getString(10),""});}
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", 0);
                 modelo.addRow(new Object[]{"Error","Error"});
@@ -158,16 +158,16 @@ C_Vendedores vendors= new C_Vendedores();
     } 
     private void PrepararModeloUnidadVTotal() {
        while(modelo.getRowCount()>0)modelo.removeRow(0);
-       String TitulosdeColumna[]=new String[]{"Nº","Nombres","Apellidos","DUI","NIT","NSS","Telefono(s)","Dirección"};
+       String TitulosdeColumna[]=new String[]{"Nº","Nombres","Apellidos","DUI","Pasaporte","Hist Credit","NIT","Telefono(s)","Dirección"};
        modelo.setColumnIdentifiers(TitulosdeColumna);
         try{
-            rstTabla = vendors.llenarTabla();
+            rstTabla = clients.llenarTabla();
             while (rstTabla.next()) {
-                modelo.addRow(new Object[]{rstTabla.getString(1),rstTabla.getString(2),rstTabla.getString(3),rstTabla.getString(5),rstTabla.getString(6),rstTabla.getString(8),rstTabla.getString(9),rstTabla.getString(4)});
+                modelo.addRow(new Object[]{rstTabla.getString(1),rstTabla.getString(2),rstTabla.getString(3),rstTabla.getString(5),rstTabla.getString(7),rstTabla.getString(11),rstTabla.getString(6),rstTabla.getString(8),rstTabla.getString(4)});
+                if(rstTabla.getInt(9)!=0)
+                modelo.addRow(new Object[]{"","","","","","","",rstTabla.getInt(9),""});
                 if(rstTabla.getInt(10)!=0)
-                modelo.addRow(new Object[]{"","","","","","",rstTabla.getString(10),""});
-                if(rstTabla.getInt(11)!=0)
-                modelo.addRow(new Object[]{"","","","","","",rstTabla.getString(11),""});}
+                modelo.addRow(new Object[]{"","","","","","",rstTabla.getInt(10),""});}
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", 0);
                 modelo.addRow(new Object[]{"Error","Error"});
@@ -197,21 +197,23 @@ C_Vendedores vendors= new C_Vendedores();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frm_ListaVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_ListaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frm_ListaVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_ListaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frm_ListaVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_ListaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frm_ListaVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_ListaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frm_ListaVendedores().setVisible(true);
+                new frm_ListaClientes().setVisible(true);
             }
         });
     }

@@ -14,8 +14,11 @@ import java.sql.ResultSet;
 public class C_Versiones {
     Conexion cn = new Conexion();   
     
-    public void insertar(int id_modelo, int id_marca,String version, String Color) {
+    public void insertarVersionColor(String id_modelo, String id_marca,String version, String Color) {
         cn.UID("INSERT INTO vehi_versiones(id_marca,id_modelo,version,color) value ('"+id_marca+"','"+id_modelo+"','"+version+"','"+Color+"')");
+    }
+    public void insertarVersion(String id_modelo, String id_marca,String version) {
+        cn.UID("INSERT INTO vehi_versiones(id_marca,id_modelo,version) value ('"+id_marca+"','"+id_modelo+"','"+version+"')");
     }
     public ResultSet llenarTabla() {
         return (cn.getVal("SELECT id_marca,Marca FROM vehi_marcas"));

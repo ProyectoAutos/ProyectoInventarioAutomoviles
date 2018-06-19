@@ -82,16 +82,7 @@ public class frm_IngresarModelo extends javax.swing.JFrame {
             lbl_Id_Modelo.setText("00001");
         }
         Imprimir();
-    }
-    private boolean BuscarCoincidenciadeModeloEntrante(String NewModelo){
-        boolean found=false;
-        for(int fila=0;fila<ListaModelos.getSize();fila++)
-        if(ListaModelos.getElementAt(fila).toUpperCase().equals(NewModelo.toUpperCase())){
-            found=true;
-        }
-            
-        return found;
-    }   
+    }  
         
     private void PrepararModeloUnidad() {
        while(modelo.getRowCount()>0)modelo.removeRow(0);
@@ -250,7 +241,10 @@ public class frm_IngresarModelo extends javax.swing.JFrame {
     private void btn_RegistrarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarModeloActionPerformed
         if(jTextField1.getText().length()!=0){
         ObjModelo.insertar(Integer.parseInt(lbl_Id_Modelo.getText()), Integer.parseInt(Id_Marca.getText()), jTextField1.getText());
-        MostrarSiguienteNdeModeloParaMarca();            
+        MostrarSiguienteNdeModeloParaMarca(); 
+        JOptionPane.showMessageDialog(null, "Modelo registrado con éxito");
+        jTextField1.setText("");
+        jTextField1.requestFocus();
         }
         else
             JOptionPane.showMessageDialog(null, "Debe ingresar un criterio");

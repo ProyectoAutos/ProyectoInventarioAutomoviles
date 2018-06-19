@@ -15,4 +15,7 @@ public class Marcas {
     public ResultSet llenarTabla() {
         return (cn.getVal("SELECT id_marca,Marca FROM vehi_marcas"));
     }
+    public ResultSet ConsultaMarca(String id_Marca) {
+        return (cn.getVal("SELECT Marca FROM vehi_marcas where id_Marca='"+id_Marca+"'"));
+    }
 }

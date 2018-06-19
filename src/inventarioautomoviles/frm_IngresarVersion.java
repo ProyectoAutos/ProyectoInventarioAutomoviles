@@ -22,9 +22,10 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
 
     Marcas ObjMarca=new Marcas();
     Modelos ObjModelo=new Modelos();
+    C_Versiones ObjVersiones=new C_Versiones();
     DefaultComboBoxModel ListaMarcas=new DefaultComboBoxModel();
     DefaultComboBoxModel ListaId_Marcas=new DefaultComboBoxModel();
-    DefaultComboBoxModel ListaVersionesPorModelo=new DefaultComboBoxModel();
+    DefaultComboBoxModel ModeloporMarca=new DefaultComboBoxModel();
     DefaultComboBoxModel ListaId_Modelos=new DefaultComboBoxModel();
     DefaultListModel<String> ListaVersiones=new DefaultListModel<>();
     DefaultTableModel modelo=new DefaultTableModel();    
@@ -33,7 +34,7 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
     public frm_IngresarVersion() {
         initComponents();
         this.setLocationRelativeTo(null);
-        PrepararCMBMarcas();
+        PrepararCMBMarcas();        
         Imprimir();
     }
 
@@ -46,35 +47,45 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
     private void MostrarIdMarcas(){
         int posicion=cmb_Marca.getSelectedIndex();
         Id_Marca.setText(String.valueOf(ListaId_Marcas.getElementAt(posicion)));
+    }private void MostrarIdModelos(){
+        int posicion=cmb_Modelo.getSelectedIndex();
+        lbl_Id_Modelo.setText(String.valueOf(ListaId_Modelos.getElementAt(posicion)));
     }
-    private void PrepararCMBMarcas(){   
+    private void PrepararCMBMarcas(){  
+        PrepararCMBModelos();
     ResultSet rstMarca = null;
+    ResultSet rstIdMarca = null;
     ListaMarcas.removeAllElements();
     ListaId_Marcas.removeAllElements();
         try{
-            rstMarca = ObjMarca.llenarTabla();
-            while (rstMarca.next()) {
-                ListaMarcas.addElement(rstMarca.getString(2));                
-                ListaId_Marcas.addElement(rstMarca.getString(1)); 
-                cmb_Marca.setModel(ListaMarcas);
-                MostrarIdMarcas();
+            rstIdMarca=ObjModelo.llenaridMarcasConModelos();
+            while (rstIdMarca.next()) {               
+                ListaId_Marcas.addElement(rstIdMarca.getString(1));                 
+               
             }
+            for(int i=0;ListaId_Marcas.getSize()!=i;i++){
+                rstMarca = ObjMarca.ConsultaMarca(ListaId_Marcas.getElementAt(i).toString());
+                if(rstMarca.next())                    
+                ListaMarcas.addElement(rstMarca.getString(1)); 
+            }
+            MostrarIdMarcas();
+            cmb_Marca.setModel(ListaMarcas);  
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
         } 
     }
     private void PrepararCMBModelos(){   
     ResultSet rstModelo = null;
-    ListaVersionesPorModelo.removeAllElements();
+    ModeloporMarca.removeAllElements();
     ListaId_Modelos.removeAllElements();
         try{
             rstModelo = ObjModelo.llenarTabla(cmb_Marca.getSelectedIndex()+1);
             while (rstModelo.next()) {
-                ListaVersionesPorModelo.addElement(rstModelo.getString(2));                
-                ListaId_Marcas.addElement(rstModelo.getString(1)); 
-                cmb_Modelo.setModel(ListaVersionesPorModelo);
-                MostrarIdMarcas();
-                MostrarSiguienteNdeVersiónParaModelo();
+                ModeloporMarca.addElement(rstModelo.getString(2));                
+                ListaId_Modelos.addElement(rstModelo.getString(1)); 
+                cmb_Modelo.setModel(ModeloporMarca);
+                MostrarIdModelos();
+                //MostrarSiguienteNdeVersiónParaModelo();
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
@@ -90,26 +101,17 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
                 if(rstIdModelo.getString(1)!=null)
                     Idmodel = Integer.parseInt(rstIdModelo.getString(1));
             if(Idmodel<9)
-                lbl_Id_Modelo.setText("00"+(Idmodel+1));
+                lbl_Id_Modelo.setText("00"+(Idmodel));
             else if(Idmodel>=9&&Idmodel<99)
-                lbl_Id_Modelo.setText("0"+(Idmodel+1));
+                lbl_Id_Modelo.setText("0"+(Idmodel));
             else
-                lbl_Id_Modelo.setText(String.valueOf((Idmodel+1)));
+                lbl_Id_Modelo.setText(String.valueOf((Idmodel)));
             } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
-            lbl_Id_Modelo.setText("00001");
+            lbl_Id_Modelo.setText("000");
         }
         Imprimir();
-    }
-    private boolean BuscarCoincidenciadeModeloEntrante(String NewModelo){
-        boolean found=false;
-        for(int fila=0;fila<ListaVersionesPorModelo.getSize();fila++)
-        if(ListaVersionesPorModelo.getElementAt(fila).toString().toUpperCase().equals(NewModelo.toUpperCase())){
-            found=true;
-        }
-            
-        return found;
-    }   
+    }  
         
     private void PrepararModeloUnidad() {
        while(modelo.getRowCount()>0)modelo.removeRow(0);
@@ -118,7 +120,7 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
         try{
             rstTabla = unidad.llenarTablaMarcaModeloVersion();
             while (rstTabla.next()) 
-                modelo.addRow(new Object[]{rstTabla.getString(2),rstTabla.getString(4),rstTabla.getString(6)});
+                modelo.addRow(new Object[]{rstTabla.getString(2),rstTabla.getString(4),rstTabla.getString(6),rstTabla.getString(7)});
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);
                 modelo.addRow(new Object[]{"Error","Error"});
@@ -143,7 +145,6 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
         cmb_Modelo = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -174,7 +175,7 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Ingrese el nuevo modelo:");
+        jLabel2.setText("Seleccione el modelo:");
 
         lbl_Id_Modelo.setText("00000");
 
@@ -200,17 +201,16 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
 
         cmb_Modelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTextField1.setText("jTextField1");
+        jLabel3.setText("Ingrese la version:");
 
-        jLabel3.setText("jLabel3");
-
-        jLabel4.setText("0000");
-
-        jTextField2.setText("jTextField2");
-
-        jLabel5.setText("jLabel5");
+        jLabel5.setText("Ingrese el color:");
 
         jButton1.setText("Registrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,17 +234,13 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
                                     .addComponent(cmb_Modelo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(Id_Marca)
-                                            .addComponent(lbl_Id_Modelo))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(btn_RegistrarModelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btn_AñadirMarca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                                    .addComponent(Id_Marca)
+                                    .addComponent(lbl_Id_Modelo))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_RegistrarModelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_AñadirMarca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -268,9 +264,7 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -288,6 +282,7 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
     private void cmb_MarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_MarcaItemStateChanged
         MostrarIdMarcas();
         MostrarSiguienteNdeVersiónParaModelo();
+        PrepararCMBModelos();
     }//GEN-LAST:event_cmb_MarcaItemStateChanged
 
     private void btn_AñadirMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AñadirMarcaActionPerformed
@@ -301,13 +296,30 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
     }//GEN-LAST:event_formFocusGained
 
     private void btn_RegistrarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarModeloActionPerformed
-        if(jTextField1.getText().length()!=0){
-        ObjModelo.insertar(Integer.parseInt(lbl_Id_Modelo.getText()), Integer.parseInt(Id_Marca.getText()), jTextField1.getText());
-        MostrarSiguienteNdeVersiónParaModelo();           
+        frm_IngresarModelo mo=new frm_IngresarModelo();
+        mo.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_RegistrarModeloActionPerformed
+
+    private void registrar(){
+        if(jTextField2.getText().length()==0)
+            ObjVersiones.insertarVersion(Id_Marca.getText(), lbl_Id_Modelo.getText(), jTextField1.getText());
+        else
+            ObjVersiones.insertarVersionColor(Id_Marca.getText(), lbl_Id_Modelo.getText(), jTextField1.getText(),jTextField2.getText());
+        JOptionPane.showMessageDialog(null, "Version registrada con éxito");
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField1.requestFocus();
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(jTextField1.getText().equals("")){            
+            JOptionPane.showMessageDialog(this, "Ingrese una versión");
+            jTextField1.requestFocus();
         }
         else
-            JOptionPane.showMessageDialog(null, "Debe ingresar un criterio");
-    }//GEN-LAST:event_btn_RegistrarModeloActionPerformed
+            registrar();
+        Imprimir();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -357,7 +369,6 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

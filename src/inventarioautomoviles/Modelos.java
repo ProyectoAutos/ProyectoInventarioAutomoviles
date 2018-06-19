@@ -32,6 +32,8 @@ public class Modelos {
     public ResultSet llenarTabla(int id_marca) {
         return (cn.getVal("SELECT id_modelo,modelo FROM vehi_modelos where id_marca='"+id_marca+"'"));
     }
-
+    public ResultSet llenaridMarcasConModelos() {
+        return (cn.getVal("SELECT distinct id_marca FROM vehi_modelos"));
+    }
     
 }

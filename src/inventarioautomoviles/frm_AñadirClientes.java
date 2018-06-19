@@ -16,11 +16,9 @@ import javax.swing.JOptionPane;
  *
  * @author Javier
  */
-public class frm_AñadirVendedores extends javax.swing.JFrame {
-
-    /** Creates new form frm_AñadirVendedores */
-    C_Vendedores objVend=new C_Vendedores();
-    public frm_AñadirVendedores() {
+public class frm_AñadirClientes extends javax.swing.JFrame {
+    C_Clientes objCli=new C_Clientes();
+    public frm_AñadirClientes() {
         initComponents();
         id();
     }
@@ -41,7 +39,6 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -57,14 +54,15 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Datos del vendedor:");
+        jLabel1.setText("Datos del cliente:");
 
         jLabel2.setText("Código ");
 
@@ -76,9 +74,7 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
 
         jLabel6.setText("NIT:");
 
-        jLabel7.setText("AFP:");
-
-        jLabel8.setText("NSS:");
+        jLabel7.setText("Nº de pasaporte");
 
         jLabel9.setText("Telefono 1:");
 
@@ -142,12 +138,6 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
             }
         });
 
-        jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField10KeyTyped(evt);
-            }
-        });
-
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +153,10 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
         });
 
         jButton3.setText("Cancelar");
+
+        jLabel8.setText("Posee historial crediticio:");
+
+        jCheckBox1.setText("Si");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,33 +186,33 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
                                     .addComponent(jTextField2)
                                     .addComponent(jTextField3)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, Short.MAX_VALUE)
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel11)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField10))
+                                        .addComponent(jTextField9))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel9)
-                                                .addGap(14, 14, 14)
-                                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel8)
-                                                .addGap(32, 32, 32)
-                                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel9)
+                                        .addGap(14, 14, 14)
+                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel12)))
+                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jCheckBox1)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -259,17 +253,17 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jCheckBox1))
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -281,8 +275,6 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
                     .addComponent(jButton3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jLabel8.getAccessibleContext().setAccessibleDescription("Número de seguro social");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -313,12 +305,12 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField5KeyTyped
 
     private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
-        if(jTextField6.getText().length()==12)
+        if(jTextField6.getText().length()==9)
             evt.consume();
     }//GEN-LAST:event_jTextField6KeyTyped
 
     private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
-        if((jTextField7.getText().length()==9)||!Character.isDigit(evt.getKeyChar()))
+        if((jTextField7.getText().length()==8)||!Character.isDigit(evt.getKeyChar()))
             evt.consume();
     }//GEN-LAST:event_jTextField7KeyTyped
 
@@ -332,18 +324,16 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
             evt.consume();
     }//GEN-LAST:event_jTextField9KeyTyped
 
-    private void jTextField10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyTyped
-        if((jTextField10.getText().length()==8)||!Character.isDigit(evt.getKeyChar()))
-            evt.consume();
-    }//GEN-LAST:event_jTextField10KeyTyped
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(ComprobarCampos()){
             Guardar();
             this.dispose();
+            frm_ListaClientes fcli= new frm_ListaClientes();
+            fcli.setVisible(true);
         }            
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    int nrevision=0;
     private boolean ComprobarCampos(){
         boolean TODOOk=true;
         if(jTextField2.getText().equals("")){
@@ -367,23 +357,26 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
             TODOOk=false;
         }
         if(jTextField6.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Ingrese AFP");
+            if(nrevision==0){                
+            JOptionPane.showMessageDialog(this, "No olvide su número de pasaporte");
             jTextField6.requestFocus();
             TODOOk=false;
+            }
+            else{
+                jTextField6.setText("No posee");
+                TODOOk=true;
+                nrevision=0;
+            }
+            nrevision++;
         }
-        if(jTextField7.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Ingrese número de seguro social");
-            jTextField7.requestFocus();
-            TODOOk=false;
-        }
-        if(jTextField8.getText().equals("")&&jTextField9.getText().equals("")&&jTextField10.getText().equals("")){
+        if(jTextField7.getText().equals("")&&jTextField8.getText().equals("")&&jTextField9.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Ingrese almenos un número de teléfono");
-            if(jTextField10.getText().equals(""))
-            jTextField10.requestFocus();
             if(jTextField9.getText().equals(""))
             jTextField9.requestFocus();
             if(jTextField8.getText().equals(""))
-            jTextField8.requestFocus();        
+            jTextField8.requestFocus();
+            if(jTextField7.getText().equals(""))
+            jTextField7.requestFocus();        
             TODOOk=false;
         }    
         if(jTextArea1.getText().equals("")){
@@ -401,14 +394,14 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
         jTextField5.setText("");
         jTextField6.setText("");
         jTextField7.setText("");
+        jTextField7.setText("");
         jTextField8.setText("");
-        jTextField9.setText("");
-        jTextField10.setText("");        
+        jTextField9.setText("");        
         jTextArea1.setText("");
     }
     public void id(){
         resetCampos();
-        ResultSet id= objVend.contarRegistros();        
+        ResultSet id= objCli.contarRegistros();      
                     
         try {
             if(id.next())
@@ -418,7 +411,12 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
         }
     }
     public void Guardar(){
-        objVend.nuevoVendedor(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextArea1.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), Integer.parseInt(jTextField7.getText()), Integer.parseInt(jTextField8.getText()),Integer.parseInt(jTextField9.getText()),Integer.parseInt(jTextField10.getText()));
+        String HistorialCrediticio;
+        if(jCheckBox1.isSelected())
+            HistorialCrediticio="SI";
+        else
+            HistorialCrediticio="NO";
+        objCli.nuevoCliente(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextArea1.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), Integer.parseInt(jTextField7.getText()),Integer.parseInt(jTextField8.getText()),Integer.parseInt(jTextField9.getText()),HistorialCrediticio);
         id();
     }
     /**
@@ -438,14 +436,18 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frm_AñadirVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_AñadirClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frm_AñadirVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_AñadirClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frm_AñadirVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_AñadirClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frm_AñadirVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_AñadirClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -454,7 +456,7 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frm_AñadirVendedores().setVisible(true);
+                new frm_AñadirClientes().setVisible(true);
             }
         });
     }
@@ -463,6 +465,7 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -478,7 +481,6 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
