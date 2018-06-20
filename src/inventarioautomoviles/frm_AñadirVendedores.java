@@ -163,6 +163,11 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
         });
 
         jButton3.setText("Cancelar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,15 +225,14 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
                                 .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel12)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton3)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -343,6 +347,23 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
             this.dispose();
         }            
     }//GEN-LAST:event_jButton2ActionPerformed
+
+        String vengodesde;
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if(vengodesde=="ListaVendedores"){
+            frm_ListaClientes cli=new frm_ListaClientes();
+            this.dispose();
+            cli.setVisible(true);
+        } else if(vengodesde=="Venta"){
+            frm_Venta venta=new frm_Venta();
+            this.dispose();
+            venta.setVisible(true);
+        } else{
+        frm_MenuPrincipal menu=new frm_MenuPrincipal();
+        this.dispose();
+        menu.setVisible(true);            
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private boolean ComprobarCampos(){
         boolean TODOOk=true;

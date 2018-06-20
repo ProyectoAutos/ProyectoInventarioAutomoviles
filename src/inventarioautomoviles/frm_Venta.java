@@ -317,6 +317,7 @@ public class frm_Venta extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         frm_AñadirVendedores Obj_Vendor=new frm_AñadirVendedores();
+        Obj_Vendor.vengodesde="Venta";
         Obj_Vendor.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
