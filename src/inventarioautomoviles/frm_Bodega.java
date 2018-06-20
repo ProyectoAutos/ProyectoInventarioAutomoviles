@@ -146,12 +146,14 @@ public class frm_Bodega extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         frm_IngresarModelo model=new frm_IngresarModelo();
+        model.vengodesde="bodega";
         this.dispose();
         model.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         frm_IngresarVersion vers=new frm_IngresarVersion();
+        vers.vengodesde="bodega";
         this.dispose();
         vers.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed

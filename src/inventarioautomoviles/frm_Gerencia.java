@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class frm_Gerencia extends javax.swing.JFrame {
     C_Gerencia obj_gerencial=new C_Gerencia();
+     C_Venta obj_venta=new  C_Venta();
     ResultSet rstGerencia;
     String Nit_Viejo;
     public frm_Gerencia() {
@@ -264,6 +265,7 @@ public class frm_Gerencia extends javax.swing.JFrame {
     }
     private void insertarnuevo(){
         if(comprobardatos()){
+        obj_venta.EscribirNITGerencial(jTextField6.getText());
         obj_gerencial.insertar(jTextField1.getText(), jTextArea1.getText(), jTextField2.getText(), Integer.parseInt(jTextField5.getText()), jTextField6.getText(), Integer.parseInt(jTextField3.getText()), Integer.parseInt(jTextField4.getText()));
         JOptionPane.showMessageDialog(this, "Registro realizado con éxito");  
         imprimir();
@@ -330,6 +332,7 @@ public class frm_Gerencia extends javax.swing.JFrame {
 
     private void guardarcambios() {
         JOptionPane.showMessageDialog(this, "Cambios realizados con éxito");
+        obj_venta.EscribirNITGerencial(jTextField6.getText());
         obj_gerencial.editar(jTextField1.getText(), jTextArea1.getText(), jTextField2.getText(), Integer.parseInt(jTextField5.getText()), jTextField6.getText(), Integer.parseInt(jTextField3.getText()), Integer.parseInt(jTextField4.getText()), Nit_Viejo);
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

@@ -85,7 +85,7 @@ public class frm_IngresarMarca extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Ir al menú");
+        jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -111,7 +111,7 @@ public class frm_IngresarMarca extends javax.swing.JFrame {
                                 .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton1)))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,6 +144,17 @@ public class frm_IngresarMarca extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_AñadirActionPerformed
         String vengodesde;
     private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
+        frm_IngresarModelo FRMModelo= new frm_IngresarModelo();
+            FRMModelo.setVisible(true);
+            this.dispose();
+    }//GEN-LAST:event_btn_CancelarActionPerformed
+
+    private void txt_MarcaEntranteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_MarcaEntranteKeyTyped
+        if(txt_MarcaEntrante.getText().length()==50)
+            evt.consume();
+    }//GEN-LAST:event_txt_MarcaEntranteKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(vengodesde=="modelo"){
             frm_IngresarModelo FRMModelo= new frm_IngresarModelo();
             FRMModelo.setVisible(true);
@@ -157,17 +168,6 @@ public class frm_IngresarMarca extends javax.swing.JFrame {
             bode.setVisible(true);
             this.dispose();
         }
-    }//GEN-LAST:event_btn_CancelarActionPerformed
-
-    private void txt_MarcaEntranteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_MarcaEntranteKeyTyped
-        if(txt_MarcaEntrante.getText().length()==50)
-            evt.consume();
-    }//GEN-LAST:event_txt_MarcaEntranteKeyTyped
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        frm_MenuPrincipal menu=new frm_MenuPrincipal();
-        this.dispose();
-        menu.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

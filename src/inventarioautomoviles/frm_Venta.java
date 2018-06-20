@@ -22,18 +22,24 @@ public class frm_Venta extends javax.swing.JFrame {
     C_ConsultarBodega ObjBodega=new C_ConsultarBodega();
     C_Clientes ObjClientes= new C_Clientes();
     C_Vendedores ObjVendedores=new C_Vendedores();
+    C_Venta ObjVentas=new C_Venta();
+    ResultSet rstVenta;
     ResultSet rstDatosVehiculo;
     ResultSet rstClientes;
     ResultSet rstVendedores; 
+    DefaultComboBoxModel ListaIdClientes=new DefaultComboBoxModel();
     DefaultComboBoxModel ListaClientes=new DefaultComboBoxModel();
     DefaultComboBoxModel ListaHCClientes=new DefaultComboBoxModel();
+    DefaultComboBoxModel ListaIdVendedores=new DefaultComboBoxModel();
     DefaultComboBoxModel ListaVendedores=new DefaultComboBoxModel();
+    DefaultComboBoxModel ListaIdVersiones=new DefaultComboBoxModel();
     DefaultComboBoxModel ListaProductos=new DefaultComboBoxModel();
     public frm_Venta() {
         initComponents();
         this.setLocationRelativeTo(null);
         jTextField1.setEditable(false);
         PrepararComboBox();
+        PrepId();
         jComboBox1.requestFocus();
     }
 
@@ -102,7 +108,19 @@ public class frm_Venta extends javax.swing.JFrame {
 
         jLabel6.setText("Giro:");
 
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
+
         jLabel7.setText("Condición de pago:");
+
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField4KeyTyped(evt);
+            }
+        });
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Marca,Modelo,Versión y Color" }));
         jComboBox3.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -118,6 +136,11 @@ public class frm_Venta extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText("\n");
+        jTextArea1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextArea1KeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("+");
@@ -261,10 +284,22 @@ public class frm_Venta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void PrepId(){        
+        rstVenta=null;
+        rstVenta=ObjVentas.mayorRegistro();
+        try{
+            if(rstVenta.next())
+                jTextField1.setText(""+(rstVenta.getInt(1)+1));
+        } catch (SQLException ex) {            
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);      
+        }
+    }
             
     private void PrepararComboBox() {
+       ListaIdClientes.removeAllElements();
        ListaClientes.removeAllElements();
        ListaHCClientes.removeAllElements();
+       ListaIdVendedores.removeAllElements();
        ListaVendedores.removeAllElements();
        ListaProductos.removeAllElements();
        rstDatosVehiculo = null;
@@ -277,20 +312,40 @@ public class frm_Venta extends javax.swing.JFrame {
             rstVendedores=ObjVendedores.llenarTabla();
             rstDatosVehiculo = ObjBodega.llenarTablaMarcaModeloVersion();
             while (rstClientes.next()) {
+                ListaIdClientes.addElement(rstClientes.getString(1));
                 ListaClientes.addElement(rstClientes.getString(2)+" "+rstClientes.getString(3));
                 ListaHCClientes.addElement(rstClientes.getString(11));
             } 
             while(rstVendedores.next())
                 ListaVendedores.addElement(rstVendedores.getString(2)+" "+rstVendedores.getString(3));
-            while(rstDatosVehiculo.next())
+            while(rstDatosVehiculo.next()){
                 ListaProductos.addElement(rstDatosVehiculo.getString(2)+", "+rstDatosVehiculo.getString(4)+", "+rstDatosVehiculo.getString(6)+", "+rstDatosVehiculo.getString(7));
-                
+                ListaIdVersiones.addElement(rstDatosVehiculo.getString(5));
+            }
             jComboBox1.setModel(ListaClientes);
             jComboBox2.setModel(ListaVendedores);
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);                
         } 
+    }
+    private boolean comprobar(){
+        boolean result=true;
+        if(jTextField2.getText().length()!=10){
+            JOptionPane.showMessageDialog(this, "Ingrese un formato correcto de fecha");
+            result=false;
+            jTextField2.requestFocus();
+        }
+        if(jTextField4.getText().length()!=10){
+            JOptionPane.showMessageDialog(this, "Por favor, escriba una condición de pago");
+            result=false;
+            jTextField4.requestFocus();
+        }   
+        return result;
+    }
+    private void registrar(){
+        String fecha=jTextField2.getText().charAt(7)+jTextField2.getText().charAt(8)+jTextField2.getText().charAt(9)+jTextField2.getText().charAt(10)+"/"+jTextField2.getText().charAt(4)+jTextField2.getText().charAt(5)+"/"+jTextField2.getText().charAt(1)+jTextField2.getText().charAt(2);
+        ObjVentas.insertar(jTextField1.getText(),  ListaIdVersiones.getElementAt(jComboBox3.getSelectedIndex()).toString(), ListaIdClientes.getElementAt(jComboBox1.getSelectedIndex()).toString(), ListaIdVendedores.getElementAt(jComboBox2.getSelectedIndex()).toString(), fecha, jTextField3.getText(), jTextField4.getText(), jTextArea1.getText());
     }
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
         if ((!Character.isDigit(evt.getKeyChar()))||(jTextField2.getText().length()==10))
@@ -325,11 +380,17 @@ public class frm_Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        if(comprobar())
+            registrar();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        if(comprobar()){            
+            registrar();
+            frm_MenuPrincipal menu=new frm_MenuPrincipal();
+            this.dispose();
+            menu.setVisible(true);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -337,6 +398,21 @@ public class frm_Venta extends javax.swing.JFrame {
         this.dispose();
         menu.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        if(jTextField3.getText().length()==25)
+            evt.consume();
+    }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+        if(jTextField4.getText().length()==25)
+            evt.consume();
+    }//GEN-LAST:event_jTextField4KeyTyped
+
+    private void jTextArea1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyTyped
+        if(jTextArea1.getText().length()==200)
+            evt.consume();
+    }//GEN-LAST:event_jTextArea1KeyTyped
 
     /**
      * @param args the command line arguments
