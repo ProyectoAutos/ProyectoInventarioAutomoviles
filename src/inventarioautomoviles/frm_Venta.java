@@ -38,9 +38,8 @@ public class frm_Venta extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         jTextField1.setEditable(false);
-        jTextField2.setText("dd/mm/aaaa");
+        limpiar();
         PrepararComboBox();
-        PrepId();
         jComboBox1.requestFocus();
     }
 
@@ -336,6 +335,7 @@ public class frm_Venta extends javax.swing.JFrame {
         jTextField3.setText("");
         jTextField4.setText("");
         jTextArea1.setText("");
+        PrepId();
     }
     private boolean comprobar(){
         boolean result=true;

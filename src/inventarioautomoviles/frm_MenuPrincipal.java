@@ -5,6 +5,10 @@
  */
 package inventarioautomoviles;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Javier
@@ -14,9 +18,11 @@ public class frm_MenuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form frm_MenuPrincipal
      */
+    C_Gerencia ger=new C_Gerencia();
     public frm_MenuPrincipal() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        titulo();
+        this.setLocationRelativeTo(null);     
     }
 
     /**
@@ -136,6 +142,15 @@ public class frm_MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void titulo(){
+        ResultSet rstVenta=ger.NombredeEmpresa();
+        try{
+            if(rstVenta.next())    
+               this.setTitle("Venta de vehiculos "+rstVenta.getString(1));
+        } catch (SQLException ex) {            
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);      
+        }
+    }
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         frm_ListaVendedores vend=new frm_ListaVendedores();
