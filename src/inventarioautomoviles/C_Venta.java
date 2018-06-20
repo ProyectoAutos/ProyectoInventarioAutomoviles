@@ -20,6 +20,6 @@ public class C_Venta {
         return (cn.getVal("SELECT MAX(id_venta) FROM ventas"));
     }
     public void insertar(String id_Venta,String id_version,String id_cliente,String id_vendedor,String fecha,String giro,String cond_pago,String Observaciones) {
-        cn.UID("INSERT INTO marcas (id_Venta,id_version,id_cliente,id_vendedor,fecha,giro,cond_pago,Observaciones) value('"+id_Venta+"','"+id_version+"','"+id_cliente+"','"+id_vendedor+"','"+fecha+"','"+giro+"','"+cond_pago+"','"+Observaciones+"')");
+        cn.UID("INSERT INTO ventas (id_Venta,id_version,id_cliente,id_vendedor,fecha,giro,cond_pago,Observaciones) value('"+id_Venta+"','"+id_version+"','"+id_cliente+"','"+id_vendedor+"','"+fecha+"','"+giro+"','"+cond_pago+"','"+Observaciones+"')");
     }
 }

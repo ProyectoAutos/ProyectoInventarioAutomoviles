@@ -38,6 +38,7 @@ public class frm_Venta extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         jTextField1.setEditable(false);
+        jTextField2.setText("dd/mm/aaaa");
         PrepararComboBox();
         PrepId();
         jComboBox1.requestFocus();
@@ -94,7 +95,6 @@ public class frm_Venta extends javax.swing.JFrame {
 
         jLabel5.setText("Fecha:");
 
-        jTextField2.setText("dd/mm/aaaa");
         jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField2FocusGained(evt);
@@ -198,8 +198,8 @@ public class frm_Venta extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -316,8 +316,10 @@ public class frm_Venta extends javax.swing.JFrame {
                 ListaClientes.addElement(rstClientes.getString(2)+" "+rstClientes.getString(3));
                 ListaHCClientes.addElement(rstClientes.getString(11));
             } 
-            while(rstVendedores.next())
+            while(rstVendedores.next()){                
                 ListaVendedores.addElement(rstVendedores.getString(2)+" "+rstVendedores.getString(3));
+                ListaIdVendedores.addElement(rstVendedores.getString(1));
+            }
             while(rstDatosVehiculo.next()){
                 ListaProductos.addElement(rstDatosVehiculo.getString(2)+", "+rstDatosVehiculo.getString(4)+", "+rstDatosVehiculo.getString(6)+", "+rstDatosVehiculo.getString(7));
                 ListaIdVersiones.addElement(rstDatosVehiculo.getString(5));
@@ -329,24 +331,38 @@ public class frm_Venta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", 0);                
         } 
     }
+    private void limpiar(){
+        jTextField2.setText("dd/mm/aaaa");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextArea1.setText("");
+    }
     private boolean comprobar(){
         boolean result=true;
-        if(jTextField2.getText().length()!=10){
+        if(jTextField2.getText().length()!=10||jTextField2.getText().equals("dd/mm/aaaa")){
             JOptionPane.showMessageDialog(this, "Ingrese un formato correcto de fecha");
             result=false;
             jTextField2.requestFocus();
         }
-        if(jTextField4.getText().length()!=10){
+        if(jTextField3.getText().length()==0){
+            jTextField3.setText("Ninguno");
+        }
+        if(jTextField4.getText().length()==0){
             JOptionPane.showMessageDialog(this, "Por favor, escriba una condición de pago");
             result=false;
             jTextField4.requestFocus();
         }   
+        if(jTextArea1.getText().length()==0){
+            jTextArea1.setText("Ninguna");
+        }
         return result;
     }
     private void registrar(){
-        String fecha=jTextField2.getText().charAt(7)+jTextField2.getText().charAt(8)+jTextField2.getText().charAt(9)+jTextField2.getText().charAt(10)+"/"+jTextField2.getText().charAt(4)+jTextField2.getText().charAt(5)+"/"+jTextField2.getText().charAt(1)+jTextField2.getText().charAt(2);
+        String fecha=jTextField2.getText().charAt(6)+jTextField2.getText().charAt(7)+jTextField2.getText().charAt(8)+jTextField2.getText().charAt(9)+"/"+jTextField2.getText().charAt(3)+jTextField2.getText().charAt(4)+"/"+jTextField2.getText().charAt(0)+jTextField2.getText().charAt(1);
         ObjVentas.insertar(jTextField1.getText(),  ListaIdVersiones.getElementAt(jComboBox3.getSelectedIndex()).toString(), ListaIdClientes.getElementAt(jComboBox1.getSelectedIndex()).toString(), ListaIdVendedores.getElementAt(jComboBox2.getSelectedIndex()).toString(), fecha, jTextField3.getText(), jTextField4.getText(), jTextArea1.getText());
+        JOptionPane.showMessageDialog(this, "Venta registrada con éxito");limpiar();
     }
+    
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
         if ((!Character.isDigit(evt.getKeyChar()))||(jTextField2.getText().length()==10))
                 evt.consume();
