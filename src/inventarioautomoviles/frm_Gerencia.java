@@ -127,7 +127,7 @@ public class frm_Gerencia extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Guardar cambios");
+        jButton2.setText("Guardar y cerrar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -333,6 +333,7 @@ public class frm_Gerencia extends javax.swing.JFrame {
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         frm_MenuPrincipal menu=new frm_MenuPrincipal();
+        this.dispose();
         menu.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -341,6 +342,9 @@ public class frm_Gerencia extends javax.swing.JFrame {
             guardarcambios();
             jButton2.setEnabled(false);
             ENC_APA(false);
+            frm_MenuPrincipal menu=new frm_MenuPrincipal();
+            this.dispose();
+            menu.setVisible(true);
         }        
     }//GEN-LAST:event_jButton2ActionPerformed
 

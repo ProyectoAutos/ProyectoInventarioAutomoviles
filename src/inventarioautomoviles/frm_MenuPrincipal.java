@@ -133,20 +133,20 @@ public class frm_MenuPrincipal extends javax.swing.JFrame {
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         frm_ListaVendedores vend=new frm_ListaVendedores();
-        vend.setVisible(true);
         this.dispose();
+        vend.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         frm_Gerencia ger=new frm_Gerencia();
-        ger.setVisible(true);
         this.dispose();
+        ger.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         frm_ListaClientes cli=new frm_ListaClientes();
-        cli.setVisible(true);
         this.dispose();
+        cli.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

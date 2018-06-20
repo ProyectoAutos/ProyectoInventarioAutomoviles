@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frm_ListaClientes extends javax.swing.JFrame {
 
-    frm_AñadirClientes Obj_Client=new frm_AñadirClientes();
+    
     public frm_ListaClientes() {
         initComponents();
         Imprimir();
@@ -69,7 +69,7 @@ public class frm_ListaClientes extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Salir");
+        jButton4.setText("Volver al menú");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -126,12 +126,15 @@ public class frm_ListaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        frm_AñadirClientes Obj_Client=new frm_AñadirClientes();
+        Obj_Client.vengodesde="ListaClientes";
         Obj_Client.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         frm_MenuPrincipal menu=new frm_MenuPrincipal();
+        this.dispose();
         menu.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 C_Clientes clients= new C_Clientes();

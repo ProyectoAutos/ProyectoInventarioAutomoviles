@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frm_ListaVendedores extends javax.swing.JFrame {
 
-    frm_AñadirVendedores Obj_Vendor=new frm_AñadirVendedores();
+    
     public frm_ListaVendedores() {
         initComponents();
         Imprimir();
@@ -126,6 +126,7 @@ public class frm_ListaVendedores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        frm_AñadirVendedores Obj_Vendor=new frm_AñadirVendedores();
         Obj_Vendor.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
