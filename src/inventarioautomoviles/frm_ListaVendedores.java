@@ -19,6 +19,7 @@ public class frm_ListaVendedores extends javax.swing.JFrame {
     
     public frm_ListaVendedores() {
         initComponents();
+        this.setLocationRelativeTo(null);
         Imprimir();
     }
 
@@ -134,7 +135,8 @@ public class frm_ListaVendedores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        frm_MenuPrincipal menu=new frm_MenuPrincipal();
+        frm_MenuPrincipal menu=new frm_MenuPrincipal();        
+        this.dispose();
         menu.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 C_Vendedores vendors= new C_Vendedores();

@@ -142,11 +142,21 @@ public class frm_IngresarMarca extends javax.swing.JFrame {
         else
             JOptionPane.showMessageDialog(null, "Debe ingresar un criterio");
     }//GEN-LAST:event_btn_AñadirActionPerformed
-
+        String vengodesde;
     private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
-        frm_IngresarModelo FRMModelo= new frm_IngresarModelo();
-        FRMModelo.setVisible(true);
-        this.dispose();        
+        if(vengodesde=="modelo"){
+            frm_IngresarModelo FRMModelo= new frm_IngresarModelo();
+            FRMModelo.setVisible(true);
+            this.dispose(); 
+        } else if(vengodesde=="version"){
+            frm_IngresarVersion vers=new frm_IngresarVersion();  
+            this.dispose();
+            vers.setVisible(true);
+        } else {
+            frm_Bodega bode=new frm_Bodega();
+            bode.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btn_CancelarActionPerformed
 
     private void txt_MarcaEntranteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_MarcaEntranteKeyTyped

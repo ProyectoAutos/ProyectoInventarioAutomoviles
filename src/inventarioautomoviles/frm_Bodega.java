@@ -22,6 +22,7 @@ public class frm_Bodega extends javax.swing.JFrame {
     C_ConsultarBodega unidad=new C_ConsultarBodega();
     public frm_Bodega() {
         initComponents();
+        this.setLocationRelativeTo(null);
         Imprimir();
     }
 

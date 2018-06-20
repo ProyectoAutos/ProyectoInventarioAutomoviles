@@ -19,6 +19,7 @@ public class frm_ListaClientes extends javax.swing.JFrame {
     
     public frm_ListaClientes() {
         initComponents();
+        this.setLocationRelativeTo(null);
         Imprimir();
     }
 

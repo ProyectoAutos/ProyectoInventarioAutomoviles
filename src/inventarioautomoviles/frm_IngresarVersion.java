@@ -148,6 +148,7 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -213,6 +214,13 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
             }
         });
 
+        jButton7.setText("Cancelar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -244,6 +252,10 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
                                     .addComponent(btn_AñadirMarca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(168, 168, 168)
+                .addComponent(jButton7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,9 +284,11 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton7)
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -289,6 +303,7 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
     private void btn_AñadirMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AñadirMarcaActionPerformed
         frm_IngresarMarca frmMarca= new frm_IngresarMarca();
         frmMarca.setVisible(true);
+        frmMarca.vengodesde="version";
         this.setVisible(false);
     }//GEN-LAST:event_btn_AñadirMarcaActionPerformed
 
@@ -311,6 +326,7 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField1.requestFocus();
+        jButton7.setText("Volver al menú principal");
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(jTextField1.getText().equals("")){            
@@ -321,6 +337,12 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
             registrar();
         Imprimir();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        frm_MenuPrincipal menu=new frm_MenuPrincipal();
+        this.dispose();
+        menu.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -367,6 +389,10 @@ public class frm_IngresarVersion extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_Marca;
     private javax.swing.JComboBox<String> cmb_Modelo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

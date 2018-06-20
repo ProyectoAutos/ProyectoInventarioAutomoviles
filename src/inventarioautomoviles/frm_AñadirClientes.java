@@ -20,6 +20,7 @@ public class frm_AñadirClientes extends javax.swing.JFrame {
     C_Clientes objCli=new C_Clientes();
     public frm_AñadirClientes() {
         initComponents();
+        this.setLocationRelativeTo(null);
         id();
     }
 

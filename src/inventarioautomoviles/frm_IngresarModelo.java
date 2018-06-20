@@ -256,6 +256,7 @@ public class frm_IngresarModelo extends javax.swing.JFrame {
 
     private void btn_AñadirMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AñadirMarcaActionPerformed
         frm_IngresarMarca frmMarca= new frm_IngresarMarca();
+        frmMarca.vengodesde="modelo";
         frmMarca.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_AñadirMarcaActionPerformed
@@ -288,7 +289,7 @@ public class frm_IngresarModelo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        frm_IngresarVersion vers=new frm_IngresarVersion();
+        frm_IngresarVersion vers=new frm_IngresarVersion();        
         this.dispose();
         vers.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed

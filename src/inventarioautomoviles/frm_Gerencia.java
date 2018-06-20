@@ -19,6 +19,7 @@ public class frm_Gerencia extends javax.swing.JFrame {
     String Nit_Viejo;
     public frm_Gerencia() {
         initComponents();
+        this.setLocationRelativeTo(null);
         ENC_APA(false);
         VerContenidodeTabla();
         jButton2.setEnabled(false);

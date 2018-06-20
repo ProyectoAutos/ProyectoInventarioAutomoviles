@@ -16,6 +16,7 @@ public class frm_MenuPrincipal extends javax.swing.JFrame {
      */
     public frm_MenuPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

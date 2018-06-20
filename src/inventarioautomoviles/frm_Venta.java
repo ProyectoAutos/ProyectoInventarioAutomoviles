@@ -31,6 +31,7 @@ public class frm_Venta extends javax.swing.JFrame {
     DefaultComboBoxModel ListaProductos=new DefaultComboBoxModel();
     public frm_Venta() {
         initComponents();
+        this.setLocationRelativeTo(null);
         jTextField1.setEditable(false);
         PrepararComboBox();
         jComboBox1.requestFocus();

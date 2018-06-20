@@ -22,6 +22,7 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
     C_Vendedores objVend=new C_Vendedores();
     public frm_AñadirVendedores() {
         initComponents();
+        this.setLocationRelativeTo(null);
         id();
     }
 
