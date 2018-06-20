@@ -19,7 +19,7 @@ public class C_Gerencia {
         return (cn.getVal("SELECT COUNT(Nit_g) FROM gerencia"));
     }
     public void editar(String Nombre,String Direccion,String Email,int Registro,int tel, int fax,String Nit_Viejo){        
-        cn.UID("update gerencia set NombresEmpresa='"+Nombre+"',Direccion='"+Direccion+"',Email='"+Email+"',Registro='"+Registro+",Telefono='"+tel+"',Fax='"+fax+"' where nit_g='"+Nit_Viejo+"'");
+        cn.UID("update gerencia set NombresEmpresa='"+Nombre+"',Direccion='"+Direccion+"',Email='"+Email+"',Registro='"+Registro+"',Telefono='"+tel+"',Fax='"+fax+"' where nit_g='"+Nit_Viejo+"'");
     }
     public ResultSet NombredeEmpresa() {
         return (cn.getVal("select nombresempresa FROM gerencia"));

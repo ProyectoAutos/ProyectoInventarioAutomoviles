@@ -284,7 +284,7 @@ public class frm_Gerencia extends javax.swing.JFrame {
             jTextField5.setText(rstGerencia.getString(4));
             jTextField6.setText(rstGerencia.getString(5));
             jTextArea1.setText(rstGerencia.getString(2));            
-            Nit_Viejo=rstGerencia.getString(5);
+            Nit_Viejo=jTextField6.getText();
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error 2", 0);
@@ -331,7 +331,7 @@ public class frm_Gerencia extends javax.swing.JFrame {
     }
 
     private void guardarcambios() {
-        if(jTextField6.getText()==Nit_Viejo){    
+        if(jTextField6.getText().equals(Nit_Viejo)){    
             JOptionPane.showMessageDialog(this, "Cambios realizados con éxito");
             obj_venta.EscribirNITGerencial(jTextField6.getText());
             obj_gerencial.editar(jTextField1.getText(), jTextArea1.getText(), jTextField2.getText(), Integer.parseInt(jTextField5.getText()), Integer.parseInt(jTextField3.getText()), Integer.parseInt(jTextField4.getText()), Nit_Viejo);
@@ -397,6 +397,7 @@ public class frm_Gerencia extends javax.swing.JFrame {
             insertarnuevo(); 
         }  else{                
         ENC_APA(true);
+        jButton1.setEnabled(false);
         jButton2.setEnabled(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
