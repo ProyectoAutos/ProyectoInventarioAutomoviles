@@ -348,8 +348,19 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(ComprobarCampos()){
             Guardar();
+        if(vengodesde=="ListaVendedores"){
+            frm_ListaClientes cli=new frm_ListaClientes();
             this.dispose();
-        }            
+            cli.setVisible(true);
+        } else if(vengodesde=="Venta"){
+            frm_Venta venta=new frm_Venta();
+            this.dispose();
+            venta.setVisible(true);
+        } else{
+        frm_MenuPrincipal menu=new frm_MenuPrincipal();
+        this.dispose();
+        menu.setVisible(true);            
+        }}
     }//GEN-LAST:event_jButton2ActionPerformed
 
         String vengodesde;
