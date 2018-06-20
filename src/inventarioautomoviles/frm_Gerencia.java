@@ -241,7 +241,7 @@ public class frm_Gerencia extends javax.swing.JFrame {
         rstGerencia=obj_gerencial.contarRegistros();
         try{
         if(rstGerencia.next())
-            if(rstGerencia.getInt(1)==1){
+            if(rstGerencia.getInt(1)!=0){
                 imprimir(); 
             }else{
                 Nit_Viejo="No";
@@ -331,9 +331,14 @@ public class frm_Gerencia extends javax.swing.JFrame {
     }
 
     private void guardarcambios() {
-        JOptionPane.showMessageDialog(this, "Cambios realizados con éxito");
-        obj_venta.EscribirNITGerencial(jTextField6.getText());
-        obj_gerencial.editar(jTextField1.getText(), jTextArea1.getText(), jTextField2.getText(), Integer.parseInt(jTextField5.getText()), jTextField6.getText(), Integer.parseInt(jTextField3.getText()), Integer.parseInt(jTextField4.getText()), Nit_Viejo);
+        if(jTextField6.getText()==Nit_Viejo){    
+            JOptionPane.showMessageDialog(this, "Cambios realizados con éxito");
+            obj_venta.EscribirNITGerencial(jTextField6.getText());
+            obj_gerencial.editar(jTextField1.getText(), jTextArea1.getText(), jTextField2.getText(), Integer.parseInt(jTextField5.getText()), Integer.parseInt(jTextField3.getText()), Integer.parseInt(jTextField4.getText()), Nit_Viejo);
+        } else{
+            insertarnuevo();
+            obj_venta.EscribirNITGerencial(jTextField6.getText());
+        }
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         frm_MenuPrincipal menu=new frm_MenuPrincipal();
