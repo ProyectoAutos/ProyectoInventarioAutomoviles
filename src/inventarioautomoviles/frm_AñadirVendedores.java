@@ -410,7 +410,12 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
             if(jTextField8.getText().equals(""))
             jTextField8.requestFocus();        
             TODOOk=false;
-        }    
+        }else{
+            if(jTextField10.getText().equals(""))
+            jTextField10.setText("0");
+            if(jTextField9.getText().equals(""))
+            jTextField9.setText("0");
+        }
         if(jTextArea1.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Ingrese una dirección");
             jTextArea1.requestFocus();
