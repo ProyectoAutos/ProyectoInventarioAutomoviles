@@ -118,6 +118,7 @@ public class frm_IngresarModelo extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -333,8 +334,6 @@ public class frm_IngresarModelo extends javax.swing.JFrame {
     private javax.swing.JButton btn_AñadirMarca;
     private javax.swing.JButton btn_RegistrarModelo;
     private javax.swing.JComboBox<String> cmb_Marca;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
