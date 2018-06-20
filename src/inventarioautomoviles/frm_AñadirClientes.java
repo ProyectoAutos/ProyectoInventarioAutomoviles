@@ -405,7 +405,13 @@ public class frm_AñadirClientes extends javax.swing.JFrame {
             if(jTextField7.getText().equals(""))
             jTextField7.requestFocus();        
             TODOOk=false;
-        }    
+        }else{
+            if(jTextField9.getText().equals(""))
+                jTextField9.setText("0");
+            if(jTextField8.getText().equals(""))
+                jTextField8.setText("0");
+        }
+        
         if(jTextArea1.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Ingrese una dirección");
             jTextArea1.requestFocus();
