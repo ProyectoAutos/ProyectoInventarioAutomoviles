@@ -301,10 +301,14 @@ public class frm_AñadirVendedores extends javax.swing.JFrame {
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
         if(jTextField2.getText().length()==50)
             evt.consume();
+        if (!Character.isLetter(evt.getKeyChar()))
+            evt.consume();
     }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
         if(jTextField3.getText().length()==50)
+            evt.consume();        
+        if (!Character.isLetter(evt.getKeyChar()))
             evt.consume();
     }//GEN-LAST:event_jTextField3KeyTyped
 
