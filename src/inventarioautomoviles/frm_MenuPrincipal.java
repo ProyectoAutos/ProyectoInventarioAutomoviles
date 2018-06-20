@@ -73,7 +73,7 @@ public class frm_MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Venta");
+        jButton5.setText("Vender");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
