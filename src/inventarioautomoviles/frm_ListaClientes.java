@@ -42,7 +42,7 @@ public class frm_ListaClientes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jLabel1.setText("Lista de vendedores:");
+        jLabel1.setText("Lista de clientes:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
